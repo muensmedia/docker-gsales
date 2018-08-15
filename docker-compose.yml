@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  nginx-php-fpm:
+    build: .
+    volumes:
+      - ./DATA:/var/www/gsales/DATA
+    links:
+      - mariadb
+    environment:
+      - MYSQL_DATABASE=databaseName
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+      - WEBROOT=/var/www/gsales
+      - RUN_SCRIPTS=1
+    ports:
+      - "8080:80"
+
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootPassword
+      - MYSQL_DATABASE=databaseName
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
