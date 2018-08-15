@@ -1,4 +1,4 @@
-FROM 			richarvey/nginx-php-fpm:1.5.0
+FROM 			richarvey/nginx-php-fpm:1.5.5
 MAINTAINER		MÜNSMEDIA GmbH - Malte Müns <m.muens@muensmedia.de>
 
 ENV		GSALES_REVISION 1121
