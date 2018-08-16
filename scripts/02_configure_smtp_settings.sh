@@ -22,7 +22,7 @@ function gsalesSmtpConfigIsUnchanged( $mysqli ) {
 }
 
 // only do anything if host is specified
-if ( isset( $_ENV['SMTP_HOST'] ) && strlen( $_ENV['SMTP_HOST'] ) > 0 ) {
+if ( isset( $_ENV['SMTP_HOST'] ) && strlen( $_ENV['SMTP_HOST'] ) > 0  &&  $_ENV['SMTP_HOST'] != 'smtp.domain.de') {
 
 	sleep(5);
 

@@ -2,29 +2,32 @@ version: '2'
 
 services:
   nginx-php-fpm:
+    restart: always
     build: .
     volumes:
       - ./DATA:/var/www/gsales/DATA
     links:
       - mariadb
     environment:
-      - MYSQL_DATABASE=databaseName
-      - MYSQL_USER=username
+      - MYSQL_DATABASE=gsales2
+      - MYSQL_USER=gsales
       - MYSQL_PASSWORD=password
-      - SMTP_HOST=hostname
-      - SMTP_PORT=25
+
+      - SMTP_HOST=smtp.domain.de
+      - SMTP_PORT=587
       - SMTP_SECURITY=ssl
-      - SMTP_USERNAME=username
+      - SMTP_USERNAME=mailer@example.com
       - SMTP_PASSWORD=password
     ports:
       - "8080:80"
 
   mariadb:
+    restart: always
     image: mariadb:latest
     volumes:
       - ./mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=rootPassword
-      - MYSQL_DATABASE=databaseName
-      - MYSQL_USER=username
+      - MYSQL_DATABASE=gsales2
+      - MYSQL_USER=gsales
       - MYSQL_PASSWORD=password
