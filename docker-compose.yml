@@ -8,6 +8,9 @@ services:
       - ./DATA:/var/www/gsales/DATA
     links:
       - mariadb
+    networks:
+      - traefik
+      - internal
     environment:
       - MYSQL_DATABASE=gsales2
       - MYSQL_USER=gsales
@@ -18,16 +21,30 @@ services:
       - SMTP_SECURITY=ssl
       - SMTP_USERNAME=mailer@example.com
       - SMTP_PASSWORD=password
-    ports:
-      - "8080:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.backend=gsales"
+      - "traefik.frontend.rule=Host:gsales.backup.muensmedia.de"
+      - "traefik.docker.network=traefik"
 
   mariadb:
     restart: always
     image: mariadb:latest
     volumes:
       - ./mariadb:/var/lib/mysql
+    networks:
+      - internal
     environment:
       - MYSQL_ROOT_PASSWORD=rootPassword
       - MYSQL_DATABASE=gsales2
       - MYSQL_USER=gsales
       - MYSQL_PASSWORD=password
+    labels:
+      - "traefik.enable=false"
+
+networks:
+  traefik:
+    external: true
+  internal:
+    external: false
