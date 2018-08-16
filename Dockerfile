@@ -3,6 +3,8 @@ MAINTAINER		MÜNSMEDIA GmbH - Malte Müns <m.muens@muensmedia.de>
 
 ENV		GSALES_REVISION 1121
 ENV		GSALES_HOME /var/www/gsales
+ENV     WEBROOT /var/www/gsales
+ENV     RUN_SCRIPTS 1
 
 # Install ioncube loader
 RUN cd /tmp \
@@ -20,4 +22,5 @@ RUN mkdir -p ${GSALES_HOME} \
 RUN mkdir -p /var/www/html/scripts/
 ADD scripts/00_create_missing_folders.sh /var/www/html/scripts/00_create_missing_folders.sh
 ADD scripts/01_write_database_config.sh /var/www/html/scripts/01_write_database_config.sh
+ADD scripts/02_configure_smtp_settings.sh /var/www/html/scripts/02_configure_smtp_settings.sh
 ADD conf/nginx/nginx-site.conf /var/www/html/conf/nginx/nginx-site.conf

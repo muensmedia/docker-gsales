@@ -11,8 +11,11 @@ services:
       - MYSQL_DATABASE=databaseName
       - MYSQL_USER=username
       - MYSQL_PASSWORD=password
-      - WEBROOT=/var/www/gsales
-      - RUN_SCRIPTS=1
+      - SMTP_HOST=hostname
+      - SMTP_PORT=25
+      - SMTP_SECURITY=ssl
+      - SMTP_USERNAME=username
+      - SMTP_PASSWORD=password
     ports:
       - "8080:80"
 
