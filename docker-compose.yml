@@ -3,7 +3,7 @@ version: '2'
 services:
   nginx-php-fpm:
     restart: always
-    build: .
+    image: muensmedia/gsales:latest
     volumes:
       - ./DATA:/var/www/gsales/DATA
     links:
