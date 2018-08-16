@@ -25,7 +25,7 @@ services:
       - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.backend=gsales"
-      - "traefik.frontend.rule=Host:gsales.backup.muensmedia.de"
+      - "traefik.frontend.rule=Host:gsales.domain.de"
       - "traefik.docker.network=traefik"
 
   mariadb:
