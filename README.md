@@ -1,3 +1,5 @@
+![license](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
+
 ## g*Sales: dockerized gSales + 🐋 = 💕
 
 Dockerfile to build a [GSALES](https://www.gsales.de/) image for the [Docker](https://www.docker.com/products/docker-engine) opensource container platform.
