@@ -1,3 +1,4 @@
+[![](https://images.microbadger.com/badges/image/muensmedia/gsales.svg)](https://microbadger.com/images/muensmedia/gsales "Get your own image badge on microbadger.com")
 ![license](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 
 ## g*Sales: dockerized gSales + 🐋 = 💕
