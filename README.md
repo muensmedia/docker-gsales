@@ -20,9 +20,6 @@ The quickest way to get started is using docker-compose.
 The coolest way is using Træfik as reverse proxy.
 
 ### Docker Compose
-```
-wget https://raw.githubusercontent.com/muensmedia/docker-gsales/master/docker-compose.yml
-```
 Please adjust the passwords.
 
 Start g*Sales using:
@@ -37,17 +34,13 @@ Go on with section [SMTP](#smtp).
 To use traefik you must have [traefik installed](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-ubuntu-16-04).  
 A docker network named ``traefik`` was created.
 
-Get ``docker-compose.yml`` with traefik support:
-```
-wget https://raw.githubusercontent.com/muensmedia/docker-gsales/traefik/docker-compose.yml
-```
-Please adjust the passwords, the network name (if it does not fit for you) and the ``traefik.frontend.rule``.
+Please adjust the ``PROJECT_BASE_URL``.
 
 Start g*Sales using:
 ```
-docker-compose up
+docker-compose -f docker-compose-traefik.yml up
 ```
-Point your browser to ``http://localhost:8080`` to install g*Sales.  
+Point your browser to ``http://gsales.localhost`` to install g*Sales.  
 Go on with section [SMTP](#smtp).
 
 ### Docker
@@ -96,6 +89,7 @@ The following flags are a list of all the currently supported options that can b
 | SMTP_PASSWORD       | SMTP password.                                                                              |
 | PUID                | user id data volume directory on the host is owned by                                       |
 | PGID                | group id data volume directory on the host is owned by                                      |
+|  PROJECT_BASE_URL   | URL used by traefik                                                                         |
 
 ``* Required configuration parameters.``
 

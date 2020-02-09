@@ -3,12 +3,15 @@ version: '2'
 services:
   nginx-php-fpm:
     restart: always
-    #    image: muensmedia/gsales:latest
+#    image: muensmedia/gsales:latest
     build: ./
     volumes:
       - ./DATA:/var/www/gsales/DATA
     links:
       - mariadb
+    networks:
+      - traefik
+      - internal
     environment:
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
@@ -22,14 +25,16 @@ services:
 
       PUID: $PUID
       PGID: $PGID
-    ports:
-      - "8080:80"
+    labels:
+      - "traefik.http.routers.gsales2_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
 
   mariadb:
     restart: always
     image: mariadb:latest
     volumes:
       - mariadb-vol-1:/var/lib/mysql/
+    networks:
+      - internal
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
@@ -38,3 +43,9 @@ services:
 
 volumes:
   mariadb-vol-1:
+
+networks:
+  traefik:
+    external: true
+  internal:
+    external: false
