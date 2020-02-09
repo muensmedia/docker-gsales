@@ -2,11 +2,26 @@ stages:
   - build
   - deploy
 
-include:
-  - project: 'muensmedia-docker/gitlab-ci-recipes'
-    ref: master
-    file: '/docker/.build-docker-image.yml'
+push_to_github:
+  stage: build
+  image: docker-registry.muensmedia.de/muensmedia-docker/alpine-tools
+  variables:
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$GIT_SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - git config --global user.email "git@muensmedia.de"
+    - git config --global user.name "Gitlab CI"
+  script:
+    - git reset --hard
+    - git clean -fd
+    - git checkout $CI_COMMIT_REF_NAME
+    - git pull origin $CI_COMMIT_REF_NAME
+    - git remote set-url origin git@github.com:muensmedia/docker-gsales.git
+    - git push origin master
 
-build-docker-image:
-  extends: .build-docker-image
-
+trigger_deployment:
+  stage: deploy
+  script:
+    - "curl -X POST -F token=${TRIGGER_TOKEN} -F ref=muensmedia https://git.muensmedia.de/api/v4/projects/150/trigger/pipeline"
