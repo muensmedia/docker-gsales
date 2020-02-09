@@ -1,0 +1,12 @@
+stages:
+  - build
+  - deploy
+
+include:
+  - project: 'muensmedia-docker/gitlab-ci-recipes'
+    ref: master
+    file: '/docker/.build-docker-image.yml'
+
+build-docker-image:
+  extends: .build-docker-image
+
