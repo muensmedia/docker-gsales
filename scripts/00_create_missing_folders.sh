@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# delete smarty cache
+rm -rf ${GSALES_HOME}/DATA/cache_smarty
+
+# create dirs
 mkdir -p ${GSALES_HOME}/DATA/cache_smarty
 mkdir -p ${GSALES_HOME}/DATA/contract
 mkdir -p ${GSALES_HOME}/DATA/documents
@@ -8,7 +12,7 @@ mkdir -p ${GSALES_HOME}/DATA/invoice
 mkdir -p ${GSALES_HOME}/DATA/offer
 mkdir -p ${GSALES_HOME}/DATA/refund
 
-cat >>$GSALES_HOME/DATA/index.html <<-EOF
+cat >$GSALES_HOME/DATA/index.html <<-EOF
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,4 +29,4 @@ cat >>$GSALES_HOME/DATA/index.html <<-EOF
 </html>
 EOF
 
-chown -R nginx:nginx ${GSALES_HOME}/DATA/
+chown -R nginx:nginx ${GSALES_HOME}/DATA

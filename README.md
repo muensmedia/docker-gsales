@@ -1,3 +1,4 @@
+[![](https://images.microbadger.com/badges/image/muensmedia/gsales.svg)](https://microbadger.com/images/muensmedia/gsales "Get your own image badge on microbadger.com")
 ![license](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 
 ## g*Sales: dockerized gSales + 🐋 = 💕
@@ -93,6 +94,8 @@ The following flags are a list of all the currently supported options that can b
 | SMTP_SECURITY       | SMTP encryption, defaults to `` `` (empty: no encryption). Possible values: ``ssl``, ``tls``|
 | SMTP_USERNAME       | SMTP username.                                                                              |
 | SMTP_PASSWORD       | SMTP password.                                                                              |
+| PUID                | user id data volume directory on the host is owned by                                       |
+| PGID                | group id data volume directory on the host is owned by                                      |
 
 ``* Required configuration parameters.``
 
@@ -111,3 +114,9 @@ To use automatic SMTP-configuration:
     docker-compose stop && docker-compose up
     ```
 4. You are ready to send mails!
+
+## User / Group Identifiers
+Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and optionally the group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+
+This will pull your local UID/GID and map it into the container so you can edit on your host machine and the code will still run in the container.
+
