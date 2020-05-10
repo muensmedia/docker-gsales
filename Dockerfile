@@ -24,7 +24,6 @@ RUN chown -R nginx:nginx ${GSALES_HOME}
 
 # activate php calendar extension; needed for function easter_date()
 RUN docker-php-ext-configure calendar && docker-php-ext-install calendar
-RUN docker-php-ext-install calendar
 
 # Add scripts
 RUN mkdir -p /var/www/html/scripts/

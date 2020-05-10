@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+docker-php-ext-install calendar
 
 # delete smarty cache
 rm -rf ${GSALES_HOME}/DATA/cache_smarty
