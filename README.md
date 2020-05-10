@@ -5,7 +5,7 @@
 
 Dockerfile to build a [GSALES](https://www.gsales.de/) image for the [Docker](https://www.docker.com/products/docker-engine) opensource container platform.
 
-GSALES is set up using PHP 7.2.x, nginx and MariaDB.  
+GSALES is set up using PHP 7.3.x, nginx and MariaDB.  
 ``docker-compose.yml`` and Træfik support included.
  
 If you have improvements or suggestions please open an issue or pull request on the GitHub project page.
