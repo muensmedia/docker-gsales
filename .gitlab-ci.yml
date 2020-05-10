@@ -25,4 +25,6 @@ trigger_deployment:
   stage: deploy
   image: docker-registry.muensmedia.de/muensmedia-docker/alpine-tools
   script:
+    # wait until new docker image is build
+    - sleep 15m
     - "curl -X POST -F token=${TRIGGER_TOKEN} -F ref=muensmedia https://git.muensmedia.de/api/v4/projects/150/trigger/pipeline"
