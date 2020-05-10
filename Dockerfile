@@ -22,6 +22,9 @@ RUN mkdir -p ${GSALES_HOME} \\
     && wget ${GSALES_DOWNLOAD_URL} -qO - | tar --strip=1 -xzC ${GSALES_HOME}
 RUN chown -R nginx:nginx ${GSALES_HOME}
 
+# activate php calendar extension; needed for function easter_date()
+RUN docker-php-ext-install calendar && docker-php-ext-configure calendar
+
 # Add scripts
 RUN mkdir -p /var/www/html/scripts/
 ADD scripts/00_create_missing_folders.sh /var/www/html/scripts/00_create_missing_folders.sh
