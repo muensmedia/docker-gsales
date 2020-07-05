@@ -3,7 +3,7 @@ MAINTAINER      MÜNSMEDIA GmbH - Malte Müns <m.muens@muensmedia.de>
 
 ENV     EMPTY_STRING ""
 ENV     PHP_VERSION 7.3
-ENV     GSALES_REVISION 1134
+ENV     GSALES_REVISION 1138
 ENV     GSALES_HOME /var/www/gsales
 ENV     WEBROOT /var/www/gsales
 ENV     RUN_SCRIPTS 1
